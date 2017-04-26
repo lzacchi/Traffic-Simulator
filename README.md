@@ -22,10 +22,12 @@
 
 # Veículos
 3. Cada veículo possui um tamanho
+
 3.1. O tamanho do veículo é dado pelo seu tamanho mais 1 metro à frente e 2 metros atrás.
 
 # Relógio
 4. O sistema possui uma lista de eventos que representa o "relógio do sistema".
+
 4.1: São eventos: 
 - chegada de um novo carro
 - mudança de estado do semáforo
