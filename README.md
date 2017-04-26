@@ -17,23 +17,23 @@
 
 # Semáforo
 2. O sistema possui uma lista dos semáforos
-2.1 Cada semáforo possui uma lista das filas que fazem parte dele, dividindo-as em eferentes (saída) e aferentes (entrada).
-2.2 Cada semáforo asocia à lista de "pistas eferentes" (as suas filas de sáida) uma lista de probabilidades de um carro dobrar em cada uma dessas pistas eferentes.
+ 2.1 Cada semáforo possui uma lista das filas que fazem parte dele, dividindo-as em eferentes (saída) e aferentes (entrada).
+ 2.2 Cada semáforo asocia à lista de "pistas eferentes" (as suas filas de sáida) uma lista de probabilidades de um carro   dobrar em cada uma dessas pistas eferentes.
 
 # Veículos
 3. Cada veículo possui um tamanho
 
-3.1. O tamanho do veículo é dado pelo seu tamanho mais 1 metro à frente e 2 metros atrás.
+ 3.1. O tamanho do veículo é dado pelo seu tamanho mais 1 metro à frente e 2 metros atrás.
 
 # Relógio
 4. O sistema possui uma lista de eventos que representa o "relógio do sistema".
 
-4.1: São eventos: 
+ 4.1: São eventos: 
 - chegada de um novo carro
 - mudança de estado do semáforo
 - chegada de carro ao ao semáforo
 - troca de pista 
-4.2 O relógio é uma lista ordenada por hora de ocorrência do evento.
+ 4.2 O relógio é uma lista ordenada por hora de ocorrência do evento.
 
 
 # Geração de Valores Aleatórios
