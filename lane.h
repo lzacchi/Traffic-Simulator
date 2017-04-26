@@ -5,6 +5,7 @@
 #include<stdexcept>
 
 #include "linked_queue.h"
+#include "linked_list.h"
 
 namespace structures {
 
@@ -17,21 +18,34 @@ public:
 
     ~Lane(){}
 
+    /*! Lane Change
+    *
+    * Vehicle arrives at semaphore and decides which lane it will change to */
+    void lane_change() {
+
+    }
+
+    void insert_vehicle() {
+        auto new_vehicle = new Vehicle(size);
+
+    }
 
     int speed_limit() {
         return speed_limit_;
     }
 
-    int size() {
+    std::size_t size() const {
         return size_;
     }
 
 protected:
-    structures::LinkedQueue<int> queue{};
+    structures::LinkedQueue<int> queue{};  //Probably not int. It's temporary.
 
 private:
-    int speed_limit_, size_;
-
+    int speed_limit_;
+    std::size_t size_;
+    structures::LinkedList<Lane> lanes{};  // Possible destinations
+    
 };
 
 }  // namespace structures

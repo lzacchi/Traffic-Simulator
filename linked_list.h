@@ -9,9 +9,9 @@
 namespace structures {
 
 template<typename T>
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! LinkedList
+*
+*A class implementing a Linked List structure */
 class LinkedList {
  public:
     LinkedList() {}  // construtor padrão
@@ -20,22 +20,18 @@ class LinkedList {
         clear();
     }
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Clear
+* Erases all data from the list
+*Calls method pop_front*/
     void clear() {
-        // auto _size = size_;
-        // for (auto i = 0u; i < _size; ++i) {
-        //     pop_front();
-        // }
         while (!empty()) {
             pop_front();
         }
     }  // limpar lista
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Push Back
+*
+*inserts element at the end of the list*/
     void push_back(const T& data) {
         auto new_node = new Node{data};
         if (new_node == nullptr) {
@@ -54,9 +50,9 @@ class LinkedList {
         ++size_;
     }  // inserir no fim
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Push Front
+*
+*Inserts element at the beginning of the list*/
     void push_front(const T& data) {
         auto new_node = new Node{data};
 
@@ -65,9 +61,9 @@ class LinkedList {
         ++size_;
     }  // inserir no início
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Insert
+*
+*Inserts element in a given position*/
     void insert(const T& data, std::size_t index) {
         if (index > size_) {
             throw std::out_of_range("Invalid index");
@@ -88,9 +84,9 @@ class LinkedList {
         ++size_;
     }  // inserir na posição
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Insert Sorted
+*
+*Inserts and sorts elements by size.*/
     void insert_sorted(const T& data) {
         auto current = head;
         auto i = 0u;
@@ -102,9 +98,9 @@ class LinkedList {
         insert(data, i);
     }  // inserir em ordem
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! at
+*
+*Accesses data stored in a given position*/
     T& at(std::size_t index) const {
         if (index >= size_) {
             throw std::out_of_range("WUBBA LUBBA DUB DUB");
@@ -117,9 +113,9 @@ class LinkedList {
         return current->data();
     }  // acessar um elemento na posição index
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Pop
+*
+*Removes and returns element stored in a given position*/
     T pop(std::size_t index) {
         if (index >= size_) {
             throw std::out_of_range("Get Schwifty");
@@ -146,9 +142,9 @@ class LinkedList {
         }
     }  // retirar da posição
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Pop Back
+*
+*Removes and returns element stored at the end of the list*/
     T pop_back() {
         if (empty()) {
             throw std::out_of_range("empty");
@@ -169,9 +165,9 @@ class LinkedList {
         return aux_data;
     }  // retirar do fim
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Pop Front
+*
+*Removes and returns element stored at the beginning of the list*/
     T pop_front() {
         if (empty()) {
             throw std::out_of_range("BITE ME");
@@ -186,9 +182,9 @@ class LinkedList {
         return aux_data;
     }  // retirar do início
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Remove
+*
+*Deletes the element from the list*/
     void remove(const T& data) {
         if (find(data) == size_) {
         } else {
@@ -196,23 +192,23 @@ class LinkedList {
         }
     }  // remover específico
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Empty
+*
+*Checks if the list is empty*/
     bool empty() const {
         return size_ == 0;
     }  // lista vazia
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Contains
+*
+*Checks if data is stored in the list*/
     bool contains(const T& data) const {
         return find(data) < size_;
     }  // contém
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Find
+*
+*Locates element and returns its position*/
     std::size_t find(const T& data) const {
         auto current = head;
         auto i = 0;
@@ -230,84 +226,50 @@ class LinkedList {
         return i;
     }  // posição do dado
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+/*! Size
+*
+*Getter: returns the size of the list*/
     std::size_t size() const {
         return size_;
     }  // tamanho da lista
 
- protected:
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
+ private:
     class Node {  // Elemento
      public:
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
         explicit Node(const T& data):
             data_{data}
         {}
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
         Node(const T& data, Node* next):
             data_{data},
             next_{next}
         {}
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
         T& data() {  // getter: dado
             return data_;
         }
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
         const T& data() const {  // getter const: dado
             return data_;
         }
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
         Node* next() {  // getter: próximo
             return next_;
         }
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
         const Node* next() const {  // getter const: próximo
             return next_;
         }
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
         void next(Node* node) {  // setter: próximo
             next_ = node;
         }
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
-     protected:
+     private:
         T data_;
-
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
         Node* next_{nullptr};
     };
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
     Node* end() {  // último nodo da lista
         auto it = head;
         for (auto i = 1u; i < size(); ++i) {
@@ -316,14 +278,7 @@ class LinkedList {
         return it;
     }
 
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
     Node* head{nullptr};
-
-/*! SOMETHING SOMETHING
-* ASLASDASD
-*SUIDIAHSIDUAHS*/
     std::size_t size_{0u};
 };
 
