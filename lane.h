@@ -26,6 +26,8 @@ public:
     }
 
     void insert_vehicle() {
+        auto new_vehicle = new Vehicle{size};
+        list.push_back(new_vehicle);
 
     }
 
