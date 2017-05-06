@@ -6,17 +6,20 @@
 
 
 
-namespace structure {
+namespace simulation {
 
 class Controller {
 public:
     Controller() = default;
 
-private:
-    // lista dos semáforos
-    // lista das faixas
-     
+    ~Controller() {}
 
+protected:
+    structures::LinkedList<Semaphore> semaphores{};
+    structures::LinkedList<Lane> lanes{};
+
+private:
 
 };
+
 }

@@ -1,5 +1,5 @@
-#ifndef STRUCTURES_SEMAPHORE_H
-#define STRUCTURES_SEMAPHORE_H
+#ifndef SIMULATION_SEMAPHORE_H
+#define SIMULATION_SEMAPHORE_H
 
 
 #include<cstdint>
@@ -8,7 +8,7 @@
 #include "linked_list.h"
 #include "lane.h"
 
-namespace structures {
+namespace simulation {
 
 class Semaphore {
 public:
@@ -55,6 +55,6 @@ private:
     int i_;
 };
 
-}  // namespace structures
+}  // namespace simulation
 
 #endif

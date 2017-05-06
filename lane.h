@@ -1,31 +1,37 @@
-#ifndef STRUCTURES_LANE_H
-#define STRUCTURES_LANE_H
+#ifndef SIMULATION_LANE_H
+#define SIMULATION_LANE_H
 
-#include<cstdint>
-#include<stdexcept>
+#include <cstdint>
+#include <stdlib.h>
+#include <stdexcept>
+#include <time.h>
 
 #include "linked_queue.h"
 #include "linked_list.h"
+#include "vehicle.h"
 
-namespace structures {
-
-template<typename T>
-
+namespace simulation {
 
 class Lane {
 public:
     Lane() = default;
 
-    ~Lane(){}
+    ~Lane() {
+        list.clear();
+    }
 
-    /*! Lane Change
+    /*      Lane Change
     *
-    * Vehicle arrives at semaphore and decides which lane it will change to */
+    *           Removes vehicle from the lane (pop) and inserts it in one of the
+    *           possible destinations */
     void lane_change() {
-
+        list.pop_back();
+        //pick one of the destinations and 'call push_front()'
     }
 
     void insert_vehicle() {
+        auto new_vehicle = new Vehicle{size()};  // generates [-Wnarrowing]
+        list.push_front(new_vehicle->size());  // not sure if this is done correctly.
     }
 
     int speed_limit() {
@@ -38,13 +44,14 @@ public:
 
 protected:
     structures::LinkedList<int> list{};  //Probably not int. It's temporary.
+    structures::LinkedList<Lane> destinations{};
 
 private:
     int speed_limit_;
     std::size_t size_;
-    structures::LinkedList<Lane> lanes{};  // Possible destinations
+    Vehicle *vehicle;
 };
 
-}  // namespace structures
+}  // namespace simulation
 
 #endif

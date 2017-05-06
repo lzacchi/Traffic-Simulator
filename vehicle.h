@@ -6,7 +6,7 @@ namespace simulation {
 class Vehicle {
 public:
     Vehicle(unsigned short length):
-    length_{length};
+    length_{length}
     {}
 
     unsigned short size() {
