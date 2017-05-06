@@ -27,6 +27,7 @@ public:
     void lane_change() {
         list.pop_back();
         //pick one of the destinations and 'call push_front()'
+        
     }
 
     void insert_vehicle() {
