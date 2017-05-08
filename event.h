@@ -29,7 +29,7 @@ protected:
 
 class TrafficLightEvent : public Event {
 public:
-    TrafficLightEvent(unsigned deadline, TrafficLight* target):
+    TrafficLightEvent(TrafficLight* target, unsigned deadline):
         Event{deadline}, target_{target}
     {}
 
@@ -43,7 +43,7 @@ private:
 
 class ArrivalEvent : public Event {
 public:
-    ArrivalEvent(unsigned deadline, Lane* target):
+    ArrivalEvent(Lane* target, unsigned deadline):
         Event{deadline}, target_{target}
     {}
 
@@ -57,7 +57,7 @@ private:
 
 class SpawnEvent : public Event {
 public:
-    SpawnEvent(unsigned deadline, InputLane* target):
+    SpawnEvent(InputLane* target, unsigned deadline):
         Event{deadline}, target_{target}
     {}
 

@@ -9,13 +9,11 @@ namespace simulation {
 
 class Lane {
 public:
-    Lane(int speed_limit, int length, Controller* controller):
-        speed_limit_{speed_limit}, length_{length}, controller_{controller}
-    {}
+    Lane(int speed_limit, int length, Controller* controller);
 
-    int vehicle_count() {
-        return count_;
-    }
+    void set_controller(Controller* controller);
+
+    int vehicle_count();
 
 protected:
     int speed_limit_;
@@ -29,11 +27,7 @@ class InputLane : public Lane {
 public:
     InputLane(Lane* out1, Lane* out2, Lane* out3,
               int spawn_delay, int spawn_variation,
-              int speed_limit, int length, Controller* controller):
-        Lane{speed_limit, length, controller},
-        outgoing_{out1, out2, out3},
-        spawn_delay_{spawn_delay}, spawn_variation_{spawn_variation}
-    {}
+              int speed_limit, int length, Controller* controller);
 
 private:
     Lane* outgoing_[3];
@@ -44,10 +38,7 @@ private:
 class ConnectionLane : public Lane {
 public:
     ConnectionLane(Lane* out1, Lane* out2, Lane* out3,
-                   int speed_limit, int length, Controller* controller):
-
-        Lane{speed_limit, length, controller}, outgoing_{out1, out2, out3}
-    {}
+                   int speed_limit, int length, Controller* controller);
 
 private:
     Lane* outgoing_[3];
