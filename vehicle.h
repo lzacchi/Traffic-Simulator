@@ -5,16 +5,18 @@ namespace simulation {
 
 class Vehicle {
 public:
-    Vehicle(unsigned short length):
+    Vehicle() = delete;
+
+    Vehicle(int length):
     length_{length}
     {}
 
-    unsigned short size() {
+    int size() {
         return length_ + 3;
     }
 
 private:
-    unsigned short length_;
+    int length_;
 };
 
 }
