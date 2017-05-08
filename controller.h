@@ -10,6 +10,7 @@ namespace simulation {
 
 class Controller {
 public:
+
     Controller() = default;
 
     void schedule(Event event);
@@ -20,7 +21,7 @@ public:
 
     void schedule_traffic_light(TrafficLight* light, int time_until);
 
-    void schedule_spawn(Lane* lane, int time_until);
+    void schedule_spawn(InputLane* lane, int time_until);
 
     void schedule_arrival(Lane* lane, int time_until);
 

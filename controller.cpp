@@ -18,7 +18,7 @@ void Controller::schedule_traffic_light(TrafficLight* light, int time_until) {
     schedule(TrafficLightEvent{light, clock_ + time_until});
 }
 
-void Controller::schedule_spawn(Lane* lane, int time_until) {
+void Controller::schedule_spawn(InputLane* lane, int time_until) {
     schedule(SpawnEvent{lane, clock_ + time_until});
 }
 
