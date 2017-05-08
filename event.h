@@ -2,6 +2,7 @@
 #define SIMULATION_EVENT_H
 
 #include "traffic_light.h"
+#include "lane.h"
 #include "vehicle.h"
 
 namespace simulation {
@@ -26,7 +27,7 @@ protected:
     unsigned deadline_;
 };
 
-class TrafficLightEvent : Event {
+class TrafficLightEvent : public Event {
 public:
     TrafficLightEvent(unsigned deadline, TrafficLight* target):
         Event{deadline}, target_{target}
@@ -40,14 +41,28 @@ private:
     TrafficLight* target_;
 };
 
-class VehicleEvent : Event {
+class ArrivalEvent : public Event {
 public:
-    VehicleEvent(unsigned deadline, Lane* target):
+    ArrivalEvent(unsigned deadline, Lane* target):
         Event{deadline}, target_{target}
     {}
 
     void process() {
-        target_->cycle();
+        // ...
+    }
+
+private:
+    Lane* target_;
+};
+
+class SpawnEvent : public Event {
+public:
+    SpawnEvent(unsigned deadline, InputLane* target):
+        Event{deadline}, target_{target}
+    {}
+
+    void process() {
+        target_->spawn_vehicle();
     }
 
 private:
