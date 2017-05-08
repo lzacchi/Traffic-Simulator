@@ -66,7 +66,7 @@ public:
     }
 
 private:
-    Lane* target_;
+    InputLane* target_;
 };
 
 }

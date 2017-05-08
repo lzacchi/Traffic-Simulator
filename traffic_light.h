@@ -2,10 +2,10 @@
 #define SIMULATION_TRAFFIC_LIGHT_H
 
 #include "lane.h"
-#include "controller.h"
 
 namespace simulation {
 
+class Controller;
 class TrafficLight {
 public:
     TrafficLight(Lane* in1, Lane* in2, Lane* in3, Lane* in4,

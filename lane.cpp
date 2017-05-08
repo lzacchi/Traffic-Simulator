@@ -16,7 +16,7 @@ int Lane::vehicle_count() {
 
 InputLane::InputLane(Lane* out1, Lane* out2, Lane* out3,
                      int spawn_delay, int spawn_variation,
-                     int speed_limit, int length,):
+                     int speed_limit, int length):
     Lane{speed_limit, length}, outgoing_{out1, out2, out3},
     spawn_delay_{spawn_delay}, spawn_variation_{spawn_variation}
 {}
@@ -24,6 +24,10 @@ InputLane::InputLane(Lane* out1, Lane* out2, Lane* out3,
 ConnectionLane::ConnectionLane(Lane* out1, Lane* out2, Lane* out3,
                                int speed_limit, int length):
     Lane{speed_limit, length}, outgoing_{out1, out2, out3}
+{}
+
+OutputLane::OutputLane(int speed_limit, int length):
+                       Lane{speed_limit, length}
 {}
 
 }
