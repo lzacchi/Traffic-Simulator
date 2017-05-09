@@ -19,7 +19,7 @@ class LinkedQueue {
  /*! Linked List
 *
 * Queue specializes a Linked List structure */
-    structures::LinkedList<int> list{};
+    structures::LinkedList<T> list{};
 
  public:
     LinkedQueue() {}

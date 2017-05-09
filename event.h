@@ -13,7 +13,7 @@ public:
         deadline_{deadline}
     {}
 
-    bool operator<(Event& other) {
+    bool operator<(Event other) {
         return deadline_ < other.deadline();
     }
 
@@ -48,7 +48,7 @@ public:
     {}
 
     void process() {
-        // ...
+        target_->pop_vehicle();
     }
 
 private:

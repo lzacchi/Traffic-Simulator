@@ -28,9 +28,8 @@ void Controller::schedule_arrival(Lane* lane, int time_until) {
 
 void Controller::run(unsigned duration) {
     for (auto i = 0u; i < duration; ++i) {
-        auto next = queue_.at(queue_.size() - 1);
-        if (next.deadline() <= clock_) {
-            next.process();
+        while (queue_.back().deadline() <= clock_) {
+            queue_.pop_back().process();
         }
         ++clock_;
     }

@@ -17,11 +17,20 @@ public:
 
     int vehicle_count();
 
+    bool enough_room(Vehicle& vehicle);
+
+    void add_vehicle(Vehicle vehicle);
+
+    Vehicle pop_vehicle();
+
+    const Vehicle& first_vehicle() const;
+
 protected:
     int speed_limit_;
     int length_;
-    int count_;
-    structures::LinkedQueue<Vehicle*> vehicles;
+    int filled_length_;
+    int total_count_;
+    structures::LinkedQueue<Vehicle> vehicles_;
     Controller* controller_;
 };
 
@@ -31,10 +40,7 @@ public:
               int spawn_delay, int spawn_variation,
               int speed_limit, int length);
 
-    void spawn_vehicle() {
-        auto new_vehicle = new Vehicle{length_};
-        vehicles.enqueue(new_vehicle);
-    }
+    void spawn_vehicle();
 
 private:
     Lane* outgoing_[3];

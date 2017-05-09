@@ -101,7 +101,7 @@ class LinkedList {
 /*! at
 *
 *Accesses data stored in a given position*/
-    T& at(std::size_t index) const {
+    const T& at(std::size_t index) const {
         if (index >= size_) {
             throw std::out_of_range("WUBBA LUBBA DUB DUB");
         }
@@ -112,6 +112,29 @@ class LinkedList {
         }
         return current->data();
     }  // acessar um elemento na posição index
+
+/*! at
+*
+*Accesses data stored in a given position*/
+    T& at(std::size_t index) {
+        if (index >= size_) {
+            throw std::out_of_range("WUBBA LUBBA DUB DUB");
+        }
+
+        Node *current = head;
+        for (auto i = 0u; i < index; ++i) {
+            current = current->next();
+        }
+        return current->data();
+    }  // acessar um elemento na posição index
+
+    T& back() {
+        return at(size_ - 1);
+    }
+
+    const T& back() const {
+        return at(size_ - 1);
+    }
 
 /*! Pop
 *

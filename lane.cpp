@@ -11,7 +11,23 @@ void Lane::set_controller(Controller* controller) {
 }
 
 int Lane::vehicle_count() {
-    return count_;
+    return total_count_;
+}
+
+bool Lane::enough_room(Vehicle& vehicle) {
+    return filled_length_ + vehicle.size() <= length_;
+}
+
+void Lane::add_vehicle(Vehicle vehicle) {
+    vehicles_.enqueue(vehicle);
+}
+
+Vehicle Lane::pop_vehicle() {
+    return vehicles_.dequeue();
+}
+
+const Vehicle& Lane::first_vehicle() const{
+    return vehicles_.back();
 }
 
 InputLane::InputLane(Lane* out1, Lane* out2, Lane* out3,
@@ -20,6 +36,10 @@ InputLane::InputLane(Lane* out1, Lane* out2, Lane* out3,
     Lane{speed_limit, length}, outgoing_{out1, out2, out3},
     spawn_delay_{spawn_delay}, spawn_variation_{spawn_variation}
 {}
+
+void InputLane::spawn_vehicle() {
+    auto vehicle = Vehicle{};
+}
 
 ConnectionLane::ConnectionLane(Lane* out1, Lane* out2, Lane* out3,
                                int speed_limit, int length):
