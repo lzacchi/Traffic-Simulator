@@ -48,11 +48,12 @@ public:
     {}
 
     void process() {
-        target_->pop_vehicle();
+        target_->process_arrival(*vehicle);
     }
 
 private:
     Lane* target_;
+    Vehicle* vehicle;
 };
 
 class SpawnEvent : public Event {

@@ -6,6 +6,9 @@
 #include "event.h"
 #include "linked_list.h"
 
+#include <vector>
+#include <stdexcept>
+
 namespace simulation {
 
 class Controller {

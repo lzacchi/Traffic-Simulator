@@ -1,4 +1,4 @@
-#include "traffic_light.h"
+#include "traffic_light.h"  // private field duration_ is not used
 
 namespace simulation {
 
@@ -24,7 +24,7 @@ bool TrafficLight::is_open(Lane* lane) {
 
 void TrafficLight::cycle() {
     current_open_ = (current_open_ + 1) % 5;
-    controller_->schedule_traffic_light(this, duration_[current_open_]);
+    // controller_->schedule_traffic_light(this, duration_[current_open_]);
 }
 
 }
