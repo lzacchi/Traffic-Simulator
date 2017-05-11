@@ -1,10 +1,9 @@
 #ifndef SIMULATION_TRAFFIC_LIGHT_H
 #define SIMULATION_TRAFFIC_LIGHT_H
 
-#include "lane.h"
-
 namespace simulation {
 
+class Lane;
 class Controller;
 class TrafficLight {
 public:
@@ -15,12 +14,15 @@ public:
 
     bool is_open(Lane* lane);
 
+    int time_until_reopen(Lane* lane);
+
     void cycle();
 
 private:
     Controller* controller_;
     Lane* incoming_[4];
     int current_open_;
+    int last_change_;
     int duration_[4];
 };
 

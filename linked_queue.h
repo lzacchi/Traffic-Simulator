@@ -52,14 +52,14 @@ class LinkedQueue {
 /*! Something something
 *
 * blabla */
-    T& front() const {
+    const T& front() const {
         return list.at(0);
     }  // primeiro dado
 
 /*! Back
 *
 * returns top of the queue */
-    T& back() const {
+    const T& back() const {
         return list.at(size()-1);
     }  // último dado
 
