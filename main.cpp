@@ -1,10 +1,6 @@
 #include <iostream>
 
 #include "controller.h"
-#include "event.h"
-#include "lane.h"
-#include "traffic_light.h"
-#include "vehicle.h"
 
 using namespace simulation;
 
