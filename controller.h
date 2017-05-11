@@ -1,9 +1,6 @@
 #ifndef SIMULATION_CONTROLLER_H
 #define SIMULATION_CONTROLLER_H
 
-#include "lane.h"
-#include "traffic_light.h"
-#include "event.h"
 #include "linked_list.h"
 
 #include <vector>
@@ -11,10 +8,16 @@
 
 namespace simulation {
 
+class Lane;
+class InputLane;
+class TrafficLight;
+class Event;
 class Controller {
 public:
 
     Controller() = default;
+
+    unsigned current_time();
 
     void schedule(Event event);
 

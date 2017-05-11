@@ -1,6 +1,12 @@
+#include <iostream>
 #include "controller.h"
+#include "event.h"
 
 namespace simulation {
+
+unsigned Controller::current_time() {
+    return clock_;
+}
 
 void Controller::schedule(Event event) {
     queue_.insert_sorted(event);
@@ -28,8 +34,13 @@ void Controller::schedule_arrival(Lane* lane, int time_until) {
 
 void Controller::run(unsigned duration) {
     for (auto i = 0u; i < duration; ++i) {
+        if (queue_.empty()) {
+            continue;
+        }
         while (queue_.back().deadline() <= clock_) {
-            queue_.pop_back().process();
+            auto event = queue_.pop_back();
+            std::cout << event.description() << '\n';
+            event.process();
         }
         ++clock_;
     }

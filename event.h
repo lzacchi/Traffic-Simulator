@@ -1,6 +1,8 @@
 #ifndef SIMULATION_EVENT_H
 #define SIMULATION_EVENT_H
 
+#include <string>
+
 #include "traffic_light.h"
 #include "lane.h"
 #include "vehicle.h"
@@ -21,7 +23,13 @@ public:
         return deadline_;
     }
 
-    virtual void process();
+    void process() {
+        return;
+    }
+
+    std::string description() {
+        return "Event";
+    }
 
 protected:
     unsigned deadline_;
@@ -37,6 +45,10 @@ public:
         target_->cycle();
     }
 
+    std::string description() {
+        return "TrafficLightEvent";
+    }
+
 private:
     TrafficLight* target_;
 };
@@ -48,12 +60,15 @@ public:
     {}
 
     void process() {
-        target_->process_arrival(*vehicle);
+        target_->process_arrival();
+    }
+
+    std::string description() {
+        return "ArrivalEvent";
     }
 
 private:
     Lane* target_;
-    Vehicle* vehicle;
 };
 
 class SpawnEvent : public Event {
@@ -64,6 +79,10 @@ public:
 
     void process() {
         target_->spawn_vehicle();
+    }
+
+    std::string description() {
+        return "SpawnEvent";
     }
 
 private:

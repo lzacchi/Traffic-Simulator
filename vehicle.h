@@ -22,12 +22,6 @@ public:
         return destination_;
     }
 
-    int length() {
-        srand (static_cast <unsigned> (time(0)));
-        length_ = static_cast<int> (rand() / static_cast<int> (RAND_MAX));
-        return length_;
-    }
-
     void set_destination(Lane* destination) {
         destination_ = destination;
     }

@@ -1,15 +1,13 @@
 #ifndef SIMULATION_LANE_H
 #define SIMULATION_LANE_H
 
-#include "vehicle.h"
 #include "linked_queue.h"
-#include "traffic_light.h"
 
 namespace simulation {
 
 class Controller;
-// class TrafficLight;
-
+class Vehicle;
+class TrafficLight;
 class Lane {
 public:
     Lane(int speed_limit, int length);
@@ -20,9 +18,9 @@ public:
 
     bool enough_room(Vehicle& vehicle);
 
-    void add_vehicle(Vehicle& vehicle);
+    virtual void add_vehicle(Vehicle vehicle) = 0;
 
-    void process_arrival(Vehicle& vehicle);
+    virtual void process_arrival() = 0;
 
     Vehicle pop_vehicle();
 
@@ -33,38 +31,42 @@ protected:
     int length_;
     int filled_length_;
     int total_count_;
-    float probabilities[3];
-    structures::LinkedQueue<Vehicle> vehicles_;
     Controller* controller_;
+    structures::LinkedQueue<Vehicle> vehicles_;
     TrafficLight* trafficlight_;
-    Lane* destinations_[3];
 };
 
 class InputLane : public Lane {
 public:
-    InputLane(Lane* out1, Lane* out2, Lane* out3,
+    InputLane(int speed_limit, int length,
               int spawn_delay, int spawn_variation,
-              int speed_limit, int length,
-              float a, float b, float c);
+              Lane* out1, Lane* out2, Lane* out3,
+              float prob1, float prob2, float prob3);
 
     void spawn_vehicle();
 
+    virtual void add_vehicle(Vehicle vehicle) override;
+
+    void process_arrival() override;
+
 private:
-    // Lane* outgoing_[3];
     int const spawn_delay_;
     int spawn_variation_;
-    Vehicle* vehicle;
     float probabilities_[3];
     Lane* destinations_[3];
 };
 
 class ConnectionLane : public Lane {
 public:
-    ConnectionLane(Lane* out1, Lane* out2, Lane* out3,
-                   int speed_limit, int length, float a, float b, float c);
+    ConnectionLane(int speed_limit, int length, 
+                   Lane* out1, Lane* out2, Lane* out3,
+                   float prob1, float prob2, float prob3);
+
+    virtual void add_vehicle(Vehicle vehicle) override;
+
+    void process_arrival() override;
 
 private:
-    //Lane* outgoing_[3];
     float probabilities_[3];
     Lane* destinations_[3];
 };
@@ -72,6 +74,10 @@ private:
 class OutputLane : public Lane {
 public:
     OutputLane(int speed_limit, int length);
+
+    virtual void add_vehicle(Vehicle vehicle) override;
+
+    void process_arrival() override;
 };
 
 }

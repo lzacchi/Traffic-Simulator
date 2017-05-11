@@ -1,4 +1,6 @@
-#include "traffic_light.h"  // private field duration_ is not used
+#include "traffic_light.h"
+#include "lane.h"
+#include "controller.h"
 
 namespace simulation {
 
@@ -22,9 +24,25 @@ bool TrafficLight::is_open(Lane* lane) {
     }
 }
 
+int TrafficLight::time_until_reopen(Lane* lane) {
+    int lane_index = 0;
+    for (auto i = 0u; i < 4; ++i) {
+        if (incoming_[i] == lane) {
+            lane_index = i;
+            break;
+        }
+    }
+    auto time_until = last_change_;
+    for (auto i = current_open_; i != lane_index; i = (i + 1) % 4) {
+        time_until += duration_[i];
+    }
+    return time_until;
+}
+
 void TrafficLight::cycle() {
     current_open_ = (current_open_ + 1) % 5;
-    // controller_->schedule_traffic_light(this, duration_[current_open_]);
+    controller_->schedule_traffic_light(this, duration_[current_open_]);
+    last_change_ = controller_->current_time();
 }
 
 }
