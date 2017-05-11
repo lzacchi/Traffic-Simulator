@@ -59,14 +59,13 @@ const Vehicle& Lane::first_vehicle() const {
 InputLane::InputLane(Lane* out1, Lane* out2, Lane* out3,
                      int spawn_delay, int spawn_variation,
                      int speed_limit, int length,
-                     float a, float b, float c,
-                     Lane* x, Lane* y, Lane* z):
+                     float a, float b, float c):
     Lane{speed_limit, length}, 
     // outgoing_{out1, out2, out3},
     spawn_delay_{spawn_delay}, 
     spawn_variation_{spawn_variation},
     probabilities_{a,b,c},
-    destinations_{x,y,z}
+    destinations_{out1, out2, out3}
 {}
 
 void InputLane::spawn_vehicle() {
@@ -77,12 +76,11 @@ void InputLane::spawn_vehicle() {
 
 ConnectionLane::ConnectionLane(Lane* out1, Lane* out2, Lane* out3,
                                int speed_limit, int length,
-                               float a, float b, float c,
-                               Lane* x, Lane* y, Lane* z):
+                               float a, float b, float c):
     Lane{speed_limit, length}, 
     // outgoing_{out1, out2, out3},
     probabilities_{a,b,c},
-    destinations_{x,y,z}
+    destinations_{out1,out2,out3}
 {}
 
 OutputLane::OutputLane(int speed_limit, int length):

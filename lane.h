@@ -44,7 +44,8 @@ class InputLane : public Lane {
 public:
     InputLane(Lane* out1, Lane* out2, Lane* out3,
               int spawn_delay, int spawn_variation,
-              int speed_limit, int length, float a, float b, float c, Lane* x, Lane* y, Lane* z);
+              int speed_limit, int length,
+              float a, float b, float c);
 
     void spawn_vehicle();
 
@@ -60,7 +61,7 @@ private:
 class ConnectionLane : public Lane {
 public:
     ConnectionLane(Lane* out1, Lane* out2, Lane* out3,
-                   int speed_limit, int length, float a, float b, float c, Lane* x, Lane* y, Lane* z);
+                   int speed_limit, int length, float a, float b, float c);
 
 private:
     //Lane* outgoing_[3];
